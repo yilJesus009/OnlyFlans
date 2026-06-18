@@ -8,13 +8,15 @@ const db = require('./models');
 const cors = require('cors');
 const path = require('path');
 
+
+
+// Servir archivos subidos (fotos, banners, imágenes de posts)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.use(cors({
   origin: '*',
   optionsSuccessStatus: 200
 }));
-
-// Servir archivos subidos (fotos, banners, imágenes de posts)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

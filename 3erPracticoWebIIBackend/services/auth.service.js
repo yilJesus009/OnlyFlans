@@ -6,11 +6,12 @@ const register = async ({ nombre, email, password, role }) => {
     const existe = await Usuario.findOne({ where: { email } });
     if (existe) throw new Error('El email ya está registrado');
 
+    // Si 'role' no viene en la petición, le asignamos por defecto 'follower'
     const usuario = await Usuario.create({
         nombre,
         email,
         password: sha1(password),
-        role
+        role: role || 'follower' 
     });
 
     const token = generateToken({
