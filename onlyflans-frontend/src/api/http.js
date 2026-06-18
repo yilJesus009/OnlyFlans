@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../utils/token.js';
 
-export const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || 'http://localhost:3000';
+export const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || 'https://onlyflans-production.up.railway.app';
 
 const http = axios.create({
   baseURL: `${API_ORIGIN}/api`
