@@ -1,0 +1,32 @@
+require('dotenv').config();
+
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+const db = require('./models');
+const cors = require('cors');
+const path = require('path');
+
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    optionsSuccessStatus: 200
+}));
+
+// Servir archivos subidos (fotos, banners, imágenes de posts)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+require('./routes')(app);
+
+db.sequelize.sync({
+    // force: true // descomentar solo para resetear la BD durante desarrollo
+}).then(() => {
+    console.log('Base de datos sincronizada.');
+});
+
+app.listen(port, () => {
+    console.log(`OnlyFlans API corriendo en el puerto ${port}`);
+});
