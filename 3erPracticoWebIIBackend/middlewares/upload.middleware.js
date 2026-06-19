@@ -1,11 +1,11 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs'); // 1. Importamos File System
+const fs = require('fs'); // Importamos File System de Node
 
-// 2. Definimos la ruta absoluta de la carpeta
+// Definimos la ruta absoluta de la carpeta
 const uploadDir = path.join(__dirname, '../uploads');
 
-// 3. Si la carpeta no existe en Railway, la creamos en el acto
+// Si la carpeta no existe en el contenedor de Railway, la creamos en el acto
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
