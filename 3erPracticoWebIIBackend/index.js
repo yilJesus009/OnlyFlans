@@ -8,23 +8,25 @@ const db = require('./models');
 const cors = require('cors');
 const path = require('path');
 
-
-
-// Servir archivos subidos (fotos, banners, imágenes de posts)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+// 1. CORS primero que todo
 app.use(cors({
-  origin: '*',
-  optionsSuccessStatus: 200
+    origin: '*',
+    optionsSuccessStatus: 200
 }));
 
+// Servir archivos subidos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// 2. PARSERS DEL BODY OBLIGATORIAMENTE ANTES DE LAS RUTAS
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.json()); 
 
+// 3. LAS RUTAS AL FINAL, CUANDO YA SE PARSEÓ EL BODY
 require('./routes')(app);
 
 db.sequelize.sync({
-    // force: true // descomentar solo para resetear la BD durante desarrollo
+    // force: true 
 }).then(() => {
     console.log('Base de datos sincronizada.');
 });
