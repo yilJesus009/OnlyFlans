@@ -68,6 +68,33 @@ export default function RegisterPage() {
           <Input id="password" type="password" autoComplete="new-password" {...register('password')} />
           {errors.password && <span className="field-error">{errors.password.message}</span>}
         </div>
+
+
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-stone-700" htmlFor="password">
+            Contrasena
+          </label>
+          <Input id="password" type="password" autoComplete="new-password" {...register('password')} />
+          {errors.password && <span className="field-error">{errors.password.message}</span>}
+        </div>
+
+        {/* 👇 AGREGA ESTE NUEVO BLOQUE DEL ROL 👇 */}
+        <div>
+          <label className="mb-1 block text-sm font-medium text-stone-700" htmlFor="role">
+            ¿Qué quieres ser en OnlyFlans?
+          </label>
+          <select
+            id="role"
+            className="min-h-10 w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-ink outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/10"
+            {...register('role')}
+          >
+            <option value="follower">Seguidor (Apoyar creadores)</option>
+            <option value="creator">Creador (Recibir flanes)</option>
+          </select>
+          {errors.role && <span className="field-error">{errors.role.message}</span>}
+        </div>
+
         
         <Button type="submit" variant="accent" className="w-full" disabled={isSubmitting}>
           <UserPlus size={18} />
