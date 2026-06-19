@@ -70,28 +70,35 @@ export default function RegisterPage() {
         </div>
 
 
+<div className="space-y-2">
+          <label className="block text-sm font-medium text-stone-700">Tipo de cuenta</label>
+          <div className="grid grid-cols-2 gap-4">
+            <label className="flex cursor-pointer flex-col rounded-lg border border-stone-200 bg-white p-4 transition-colors hover:bg-stone-50 has-[:checked]:border-ink has-[:checked]:bg-stone-50">
+              <div className="flex items-center gap-2">
+                <input 
+                  type="radio" 
+                  value="follower" 
+                  className="h-4 w-4 text-ink focus:ring-ink" 
+                  {...register('role')} 
+                />
+                <span className="font-semibold text-ink">Seguidor</span>
+              </div>
+              <p className="mt-1 pl-6 text-xs text-stone-500">Explora, dona flanes y comenta.</p>
+            </label>
 
-        <div>
-          <label className="mb-1 block text-sm font-medium text-stone-700" htmlFor="password">
-            Contrasena
-          </label>
-          <Input id="password" type="password" autoComplete="new-password" {...register('password')} />
-          {errors.password && <span className="field-error">{errors.password.message}</span>}
-        </div>
-
-        {/* 👇 AGREGA ESTE NUEVO BLOQUE DEL ROL 👇 */}
-        <div>
-          <label className="mb-1 block text-sm font-medium text-stone-700" htmlFor="role">
-            ¿Qué quieres ser en OnlyFlans?
-          </label>
-          <select
-            id="role"
-            className="min-h-10 w-full rounded-md border border-stone-300 bg-white px-3 py-2 text-sm text-ink outline-none transition focus:border-ink focus:ring-2 focus:ring-ink/10"
-            {...register('role')}
-          >
-            <option value="follower">Seguidor (Apoyar creadores)</option>
-            <option value="creator">Creador (Recibir flanes)</option>
-          </select>
+            <label className="flex cursor-pointer flex-col rounded-lg border border-stone-200 bg-white p-4 transition-colors hover:bg-stone-50 has-[:checked]:border-ink has-[:checked]:bg-stone-50">
+              <div className="flex items-center gap-2">
+                <input 
+                  type="radio" 
+                  value="creator" 
+                  className="h-4 w-4 text-ink focus:ring-ink" 
+                  {...register('role')} 
+                />
+                <span className="font-semibold text-ink">Creador</span>
+              </div>
+              <p className="mt-1 pl-6 text-xs text-stone-500">Publica posts, metas y reportes.</p>
+            </label>
+          </div>
           {errors.role && <span className="field-error">{errors.role.message}</span>}
         </div>
 
